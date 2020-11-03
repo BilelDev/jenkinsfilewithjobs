@@ -20,6 +20,7 @@ pipeline {
                     }
                     steps {
                         echo "Task1 on Agent"
+						bat 'Unit.bat'
                     }
                     
                 }
@@ -29,6 +30,7 @@ pipeline {
                     }
                     steps {
 						echo "Task1 on Master"
+						bat 'Unit.bat'
 					}
                 }
             }
