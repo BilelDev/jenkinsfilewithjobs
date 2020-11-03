@@ -11,7 +11,19 @@ pipeline {
                 }
         }
 
-	
+		stage('Build') {
+           
+                stage('Build On Master') {
+                    agent {
+                        label "master"
+                    }
+                    steps {
+						echo "Build on Master"
+						bat 'Build.bat'
+					}
+                }
+           
+        }
         stage('Run Tests') {
             parallel {
                 stage('Test On Windows') {
@@ -19,7 +31,7 @@ pipeline {
                         label "Windows_Node"
                     }
                     steps {
-                        echo "Task1 on Agent"
+                        echo "Test on Agent"
 						bat 'Unit.bat'
                     }
                     
@@ -29,11 +41,13 @@ pipeline {
                         label "master"
                     }
                     steps {
-						echo "Task1 on Master"
+						echo "Test on Master"
 						bat 'Unit.bat'
 					}
                 }
             }
         }
+		
+	
     }
 }
