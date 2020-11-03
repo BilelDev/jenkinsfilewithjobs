@@ -11,9 +11,7 @@ pipeline {
                 }
         }
 
-		stage('Build') {
-           
-                stage('Build On Master') {
+	stage('Build On Master') {
                     agent {
                         label "master"
                     }
@@ -21,9 +19,9 @@ pipeline {
 						echo "Build on Master"
 						bat 'Build.bat'
 					}
-                }
-           
         }
+           
+    
         stage('Run Tests') {
             parallel {
                 stage('Test On Windows') {
